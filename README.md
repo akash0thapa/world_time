@@ -9,3 +9,5 @@ Get the current time of different places of the world.
 
 
 ![Image Alt](https://github.com/akash0thapa/world_time/blob/335107f00f7d7be948a99788023b6c6bed3c8a08/night.png)
+
+![Image Alt](https://github.com/akash0thapa/world_time/blob/417e453a41223820ec79a4f653980f887b79c5cd/location.png)
