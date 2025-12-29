@@ -1,0 +1,84 @@
+1. Safe Area
+    - when appbar is not used, text goes to the top and battery icons hide them, 
+        so this is used to send child below that area
+
+2. Maps and Routing 
+    - We have multiple pages and to navigate between them we need Routing
+    - Set of key and value pairs
+    - home: Home()
+        routes: {
+      '/':(context)=>LoadingScreen(),
+      '/home':(context)=>Home(),
+      '/location':(context)=>SelectLocation(),
+    },
+    - '/' says the First screen and it is LoadingScreen.
+    - Home() and '/' conflicts so remove the Home()
+    - To override the starting screen '/', use initialRoute: '/home',instead of home:Home()
+
+3. To click a button and move to next page, for a button,
+    - onPressed: (){
+        Navigator.pushNamed(context, '/location');
+        },
+             
+4. Routing acts like a stack where different pages are pushed and popped.
+
+5. Widget Lifecycle
+    - initState() called only once when widget is created
+    - Build() is triggered when we use setstate()
+    - Dispose() when widget/state object is removed
+
+6. Asynchronous
+    - when a code will be executed in future.
+    - others don't wait for this to be completed
+    -  void getData(){
+        Future.delayed(Duration(seconds: 3),(){
+        print('Hello delayed 3 seconds');
+        });
+        print('Not delayed'); 
+        }
+    - Here after ru, not delayed will be printed and 5 seconds later of code executed, prints delay.
+
+    - If two delayed are used, Now to make a little syncronous and wait the execution after one delayed 
+        is executed, we use async and await.
+    -  void getData() async {
+        await Future.delayed(Duration(seconds: 3),(){
+            print('Hello delayed 3 seconds');
+            });
+            print('Not delayed'); 
+        }
+    - This awaits till await function is executed then not delayed is executed
+
+ 7. Http package is installed.
+
+ 8. get() function is used to get json data 
+    -  void getData() async {  
+        Response response= await get(Uri.parse('https://jsonplaceholder.typicode.com/todos/1')); 
+        print(response.body);}
+    - {"userId": 1,
+        "id": 1,
+        "title": "delectus aut autem",
+        "completed": false
+        }
+    - We need to convert this json to a format which we can use, using dart:convert package.
+    - Map data= jsonDecode(response.body); the decoded format will be a map.
+
+9. PushReplacementNamed insted of pushing to the stack, it replaces the beneath page.
+
+10.  Navigator.pushReplacementNamed(context,'/home',arguments: {
+        'location':instance.location,
+        'flag': instance.flag,
+        'time': instance.time,
+        });
+    - The aruguments is used to access the data to the /home page.
+11. In Home page
+         Map data={};
+        @override
+        Widget build(BuildContext context) {
+            data=ModalRoute.of(context)!.settings.arguments as Map
+
+11. To add a spinner in loading page
+    - Import package 'package:flutter_spinkit/flutter_spinkit.dart'
+    - SpinKitCircle(
+          color: Colors.black,
+          size: 50.0,
+        ),
